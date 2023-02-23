@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Method {
+  id          String @id @default(uuid())
+  name        String
+  description String
+  Tip         Tip[]
+}
+
+model Tip {
+  id          String   @id @default(uuid())
+  description String
+  date        DateTime @default(now())
+  result      String   @default("pending")
+  method      Method   @relation(fields: [methodId], references: [id])
+  methodId    String
+}
