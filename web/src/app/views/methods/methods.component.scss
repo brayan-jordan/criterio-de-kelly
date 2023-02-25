@@ -1,0 +1,5 @@
+@import "../../../variables.scss";
+
+.methods-container {
+  height: calc(100vh - $header-height);
+}

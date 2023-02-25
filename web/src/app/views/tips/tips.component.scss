@@ -1,0 +1,5 @@
+@import "../../../variables.scss";
+
+.tips-container {
+  height: calc(100vh - $header-height);
+}
