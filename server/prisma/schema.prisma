@@ -20,6 +20,7 @@ model Method {
 model Tip {
   id          String   @id @default(uuid())
   description String
+  odd         Float?
   date        DateTime @default(now())
   result      String   @default("pending")
   method      Method   @relation(fields: [methodId], references: [id])
