@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,6 +12,7 @@ import { CalculatorComponent } from './views/calculator/calculator.component';
 import { HomeComponent } from './views/home/home.component';
 import { MethodsComponent } from './views/methods/methods.component';
 import { TipsComponent } from './views/tips/tips.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,15 @@ import { TipsComponent } from './views/tips/tips.component';
     HomeComponent,
     MethodsComponent,
     TipsComponent,
+    LoaderComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, CommonModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
