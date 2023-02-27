@@ -1,0 +1,5 @@
+@import '../variables.scss';
+
+main {
+  height: calc(100vh - $header-height);
+}

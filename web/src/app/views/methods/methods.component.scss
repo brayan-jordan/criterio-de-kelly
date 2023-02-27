@@ -1,27 +1,23 @@
 @import "../../../variables.scss";
 
-.methods-container {
-  height: calc(100vh - $header-height);
+.content {
+  padding: $space;
 
-  .content {
-    padding: $space;
+  table {
+    thead {
+      th {
+        padding: $space;
+        font-size: $font-lg;
 
-    table {
-      thead {
-        th {
+        border-width: 1px !important;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
           padding: $space;
           font-size: $font-lg;
-
-          border-width: 1px !important;
-        }
-      }
-
-      tbody {
-        tr {
-          td {
-            padding: $space;
-            font-size: $font-lg;
-          }
         }
       }
     }
