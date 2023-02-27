@@ -1,3 +1,17 @@
 <div class="methods-container">
   <app-loader *ngIf="loader"></app-loader>
+  <div class="content" *ngIf="!loader">
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <th>Nome</th>
+        <th>Descrição</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let method of methods">
+          <td>{{ method.name }}</td>
+          <td>{{ method.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

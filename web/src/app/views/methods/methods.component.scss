@@ -2,4 +2,28 @@
 
 .methods-container {
   height: calc(100vh - $header-height);
+
+  .content {
+    padding: $space;
+
+    table {
+      thead {
+        th {
+          padding: $space;
+          font-size: $font-lg;
+
+          border-width: 1px !important;
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            padding: $space;
+            font-size: $font-lg;
+          }
+        }
+      }
+    }
+  }
 }
