@@ -1,1 +1,6 @@
-<input type="text" [placeholder]="placeholder" />
+<input
+  type="text"
+  [placeholder]="placeholder"
+  [(ngModel)]="inputModel"
+  (ngModelChange)="inputModelChange.emit(inputModel)"
+/>
