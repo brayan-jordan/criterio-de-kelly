@@ -14,4 +14,8 @@ export class MethodService {
   get(): Observable<Method[]> {
     return this.httpClient.get<Method[]>(this.baseUrl() + 'method');
   }
+
+  post(method: Method): Observable<Method> {
+    return this.httpClient.post<Method>(this.baseUrl() + 'method', method);
+  }
 }
