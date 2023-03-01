@@ -13,6 +13,8 @@ import { HomeComponent } from './views/home/home.component';
 import { MethodsComponent } from './views/methods/methods.component';
 import { TipsComponent } from './views/tips/tips.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { InputComponent } from './components/input/input.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     MethodsComponent,
     TipsComponent,
     LoaderComponent,
+    InputComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,

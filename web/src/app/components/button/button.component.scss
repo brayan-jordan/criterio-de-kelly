@@ -1,0 +1,10 @@
+@import "../../../variables.scss";
+
+button {
+  padding: calc($space / 2);
+  border: 1px solid #ccc;
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  font-size: $font-md;
+}

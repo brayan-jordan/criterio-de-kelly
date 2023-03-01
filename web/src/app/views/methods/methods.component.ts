@@ -17,7 +17,7 @@ export class MethodsComponent implements OnInit {
     this.loader = true;
     this.methodService.get().subscribe((res) => {
       this.methods = res;
-        this.loader = false;
+      this.loader = false;
     });
   }
 }

@@ -1,0 +1,10 @@
+@import "../../../variables.scss";
+
+input {
+  padding: calc($space / 2);
+  font-size: $font-md;
+  border-radius: 0;
+  border-right: 0;
+  border: 1px solid #ccc;
+  width: 100%;
+}

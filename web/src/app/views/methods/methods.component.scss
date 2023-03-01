@@ -12,29 +12,8 @@
   }
 
   .create-method {
-    display: flex;
-
-    input {
-      padding: calc($space / 2);
-      font-size: $font-md;
-      border-radius: 0;
-      border-right: 0;
-      border: 1px solid #ccc;
-    }
-
-    #input-method-name {
-      width: 20%;
-    }
-
-    #input-method-description {
-      width: 70%;
-    }
-
-    button {
-      padding: calc($space / 2);
-      border: 1px solid #ccc;
-      flex-grow: 1;
-    }
+    display: grid;
+    grid-template-columns: 2fr 8fr 1fr;
   }
 
   table {

@@ -2,17 +2,9 @@
   <div>
     <p class="content-title">Cadastrar novo método:</p>
     <form class="create-method">
-      <input
-        id="input-method-name"
-        type="text"
-        placeholder="Insira o nome do método"
-      />
-      <input
-        id="input-method-description"
-        type="text"
-        placeholder="Insira a descrição do método"
-      />
-      <button type="submit"></button>
+      <app-input [placeholder]="'Insira o nome do método'"></app-input>
+      <app-input [placeholder]="'Insira a descrição do método'"></app-input>
+      <app-button [type]="'submit'" [text]="'Cadastrar'"></app-button>
     </form>
   </div>
   <div>
