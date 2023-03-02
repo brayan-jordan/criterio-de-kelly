@@ -4,13 +4,27 @@
     <form class="create-method" (ngSubmit)="submitMethodForm()">
       <app-input
         [placeholder]="'Insira o nome do método'"
-        [(inputModel)]="formInfo.name"
+        [(inputModel)]="newMethodFormInfo.name"
       ></app-input>
       <app-input
         [placeholder]="'Insira a descrição do método'"
-        [(inputModel)]="formInfo.description"
+        [(inputModel)]="newMethodFormInfo.description"
       ></app-input>
       <app-button [type]="'submit'" [text]="'Cadastrar'"></app-button>
+    </form>
+  </div>
+  <div>
+    <p class="content-title">Filtros:</p>
+    <form class="create-method" (ngSubmit)="findMethods()">
+      <app-input
+        [placeholder]="'Pesquisar pelo nome do método'"
+        [(inputModel)]="filter.name"
+      ></app-input>
+      <app-input
+        [placeholder]="'Pesquisar pela descrição do método'"
+        [(inputModel)]="filter.description"
+      ></app-input>
+      <app-button [type]="'submit'" [text]="'Filtrar'"></app-button>
     </form>
   </div>
   <div>

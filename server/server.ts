@@ -31,9 +31,23 @@ app.post("/method", async (req, res) => {
 });
 
 app.get("/method", async (req, res) => {
-  const method = await prisma.method.findMany();
+  const { filterByName, filterByDescription } = req.query;
 
-  res.send(method);
+  const methods = await prisma.method.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    where: {
+      name: {
+        contains: filterByName as string,
+      },
+      description: {
+        contains: filterByDescription as string,
+      },
+    },
+  });
+
+  res.send(methods);
 });
 
 app.post("/tip", async (req, res) => {

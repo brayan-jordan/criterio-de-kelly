@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Method } from './method.types';
 
@@ -11,8 +11,18 @@ export class MethodService {
     return 'http://localhost:3001/';
   }
 
-  get(): Observable<Method[]> {
-    return this.httpClient.get<Method[]>(this.baseUrl() + 'method');
+  get(filterByName: string, filterByDescription: string): Observable<Method[]> {
+    let params: HttpParams = new HttpParams();
+    if (filterByName) {
+      params = params.append('filterByName', filterByName);
+    }
+
+    if (filterByDescription) {
+      params = params.append('filterByDescription', filterByDescription);
+    }
+    return this.httpClient.get<Method[]>(this.baseUrl() + 'method', {
+      params,
+    });
   }
 
   post(method: Method): Observable<Method> {

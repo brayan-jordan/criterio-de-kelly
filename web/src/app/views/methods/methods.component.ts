@@ -13,34 +13,49 @@ export class MethodsComponent implements OnInit {
   loader = false;
   methods: Method[] = [];
 
-  formInfo = {
+  newMethodFormInfo = {
     id: '',
     name: '',
     description: '',
   };
 
+  filter = {
+    name: '',
+    description: '',
+  };
+
   ngOnInit(): void {
+    this.findMethods();
+  }
+
+  findMethods() {
     this.loader = true;
-    this.methodService.get().subscribe((res) => {
-      this.methods = res;
-      this.loader = false;
-    });
+    this.methodService
+      .get(this.filter.name, this.filter.description)
+      .subscribe((res) => {
+        this.methods = res;
+        this.loader = false;
+      });
   }
 
   submitMethodForm() {
-    if (this.formInfo.name === '' || this.formInfo.description === '') {
+    if (
+      this.newMethodFormInfo.name === '' ||
+      this.newMethodFormInfo.description === ''
+    ) {
       /* trocar por toast... */
       alert('preencha todas as informacoes');
       return;
     }
 
-    this.methodService.post(this.formInfo).subscribe((newMethod) => {
-      this.methods.push(newMethod);
-      this.formInfo = {
+    this.methodService.post(this.newMethodFormInfo).subscribe((newMethod) => {
+      this.methods.unshift(newMethod);
+      this.newMethodFormInfo = {
         id: '',
         name: '',
         description: '',
       };
+
       /* focus no insira o nome do metodo */
     });
   }
