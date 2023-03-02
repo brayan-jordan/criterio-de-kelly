@@ -11,10 +11,11 @@ datasource db {
 }
 
 model Method {
-  id          String @id @default(uuid())
+  id          String   @id @default(uuid())
   name        String
   description String
   Tip         Tip[]
+  createdAt   DateTime @default(now())
 }
 
 model Tip {
@@ -25,4 +26,5 @@ model Tip {
   result      String   @default("pending")
   method      Method   @relation(fields: [methodId], references: [id])
   methodId    String
+  createdAt   DateTime @default(now())
 }
