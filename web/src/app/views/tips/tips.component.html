@@ -1,0 +1,63 @@
+<div class="content">
+  <div>
+    <p class="content-title">Cadastrar nova aposta:</p>
+    <form class="create-tip">
+      <select [(ngModel)]="selectedMethodOption" name="selectedMethodOption">
+        <option value="" selected>Selecione o método</option>
+        <option
+          *ngFor="let methodOption of methodsOptions"
+          [value]="methodOption.id"
+        >
+          {{ methodOption.name }}
+        </option>
+      </select>
+      <app-input [type]="'date'" [(inputModel)]="newTipInfo.date"></app-input>
+      <app-input
+        style="grid-column: auto / span 3"
+        [placeholder]="'Insira a descrição da aposta'"
+        [(inputModel)]="newTipInfo.description"
+      ></app-input>
+      <app-input
+        [placeholder]="'Insira a ODD'"
+        [type]="'number'"
+        [(inputModel)]="newTipInfo.odd"
+      ></app-input>
+      <select [(ngModel)]="selectedResultOption" name="selectedResultOption">
+        <option value="" selected>Selecione o resultado</option>
+        <option
+          *ngFor="let resultOption of resultsOptions"
+          [value]="resultOption"
+        >
+          {{ resultOption }}
+        </option>
+      </select>
+      <app-button
+        [type]="'submit'"
+        [text]="'Cadastrar'"
+        (click)="submit()"
+      ></app-button>
+    </form>
+  </div>
+  <div>
+    <p class="content-title">Apostas cadastradas:</p>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <th>Método</th>
+        <th>Data</th>
+        <th>Descrição</th>
+        <th>ODD</th>
+        <th>Resultado</th>
+      </thead>
+      <tbody *ngIf="!loader">
+        <tr *ngFor="let tip of tips">
+          <td>{{ tip.method.name }}</td>
+          <td>{{ tip.date | date : "dd/MM/YYY" }}</td>
+          <td>{{ tip.description }}</td>
+          <td>{{ tip.odd }}</td>
+          <td>{{ tip.result }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <app-loader *ngIf="loader"></app-loader>
+  </div>
+</div>

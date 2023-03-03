@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Tip } from './tip.types';
+import { Tip, TipInput } from './tip.types';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -13,5 +13,9 @@ export class TipService {
 
   get(): Observable<Tip[]> {
     return this.httpClient.get<Tip[]>(this.baseUrl() + 'tip');
+  }
+
+  post(tip: TipInput): Observable<Tip> {
+    return this.httpClient.post<Tip>(this.baseUrl() + 'tip', tip);
   }
 }

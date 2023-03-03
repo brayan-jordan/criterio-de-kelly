@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class InputComponent {
   @Input() placeholder = '';
-
+  @Input() type = 'text';
   @Input() inputModel = '';
   @Output() inputModelChange = new EventEmitter<string>();
 }

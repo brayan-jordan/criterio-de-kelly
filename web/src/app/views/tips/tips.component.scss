@@ -1,0 +1,37 @@
+@import "../../../variables.scss";
+
+.content {
+  padding: $space;
+  display: grid;
+  gap: 20px;
+
+  .content-title {
+    margin: 0;
+    font-size: $font-lg;
+    font-weight: 700;
+  }
+
+  .create-tip {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  table {
+    thead {
+      th {
+        padding: $space;
+        font-size: $font-md;
+        border-width: 1px !important;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: $space;
+          font-size: $font-md;
+        }
+      }
+    }
+  }
+}

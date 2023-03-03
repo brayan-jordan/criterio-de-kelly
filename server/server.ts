@@ -51,7 +51,7 @@ app.get("/method", async (req, res) => {
 });
 
 app.post("/tip", async (req, res) => {
-  const { description, methodId, result, date } = req.body;
+  const { description, methodId, result, date, odd } = req.body;
 
   if (!description) {
     return res.status(400).send("Missing description");
@@ -67,6 +67,17 @@ app.post("/tip", async (req, res) => {
       methodId,
       result,
       date,
+      odd,
+    },
+    select: {
+      id: true,
+      date: true,
+      description: true,
+      result: true,
+      odd: true,
+      method: true,
+      methodId: false,
+      createdAt: false,
     },
   });
 
@@ -74,7 +85,18 @@ app.post("/tip", async (req, res) => {
 });
 
 app.get("/tip", async (req, res) => {
-  const tip = await prisma.tip.findMany();
+  const tip = await prisma.tip.findMany({
+    select: {
+      id: true,
+      date: true,
+      description: true,
+      result: true,
+      odd: true,
+      method: true,
+      methodId: false,
+      createdAt: false,
+    },
+  });
 
   res.send(tip);
 });
