@@ -85,6 +85,16 @@ app.post("/tip", async (req, res) => {
 });
 
 app.get("/tip", async (req, res) => {
+  const {
+    filterByDescription,
+    minOdd,
+    maxOdd,
+    methodId,
+    result,
+    startDate,
+    finishDate,
+  } = req.query;
+
   const tip = await prisma.tip.findMany({
     select: {
       id: true,
@@ -95,6 +105,25 @@ app.get("/tip", async (req, res) => {
       method: true,
       methodId: false,
       createdAt: false,
+    },
+    where: {
+      description: {
+        contains: filterByDescription as string,
+      },
+      methodId: {
+        contains: methodId as string,
+      },
+      result: {
+        contains: result as string,
+      },
+      odd: {
+        gte: minOdd ? Number(minOdd) : undefined,
+        lte: maxOdd ? Number(maxOdd) : undefined,
+      },
+      date: {
+        gte: startDate ? new Date(startDate as string) : undefined,
+        lte: finishDate ? new Date(finishDate as string) : undefined,
+      },
     },
   });
 

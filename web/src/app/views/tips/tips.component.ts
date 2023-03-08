@@ -30,6 +30,16 @@ export class TipsComponent {
     odd: '',
   };
 
+  filter = {
+    description: '',
+    minOdd: '',
+    maxOdd: '',
+    startDate: '',
+    finishDate: '',
+    methodId: '',
+    result: '',
+  };
+
   ngOnInit(): void {
     this.findMethodsOptions();
     this.findTips();
@@ -45,10 +55,20 @@ export class TipsComponent {
 
   findTips() {
     this.loader = true;
-    this.tipService.get().subscribe((res) => {
-      this.tips = res;
-      this.loader = false;
-    });
+    this.tipService
+      .get(
+        this.filter.description,
+        Number(this.filter.minOdd),
+        Number(this.filter.maxOdd),
+        new Date(this.filter.startDate),
+        new Date(this.filter.finishDate),
+        this.filter.methodId,
+        this.filter.result
+      )
+      .subscribe((res) => {
+        this.tips = res;
+        this.loader = false;
+      });
   }
 
   submit() {

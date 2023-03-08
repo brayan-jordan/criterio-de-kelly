@@ -39,6 +39,54 @@
     </form>
   </div>
   <div>
+    <p class="content-title">Filtros:</p>
+    <form class="filter-tips" (ngSubmit)="findTips()">
+      <select [(ngModel)]="filter.methodId" name="selectedMethodOptionFilter">
+        <option value="" selected>Selecione o método</option>
+        <option
+          *ngFor="let methodOption of methodsOptions"
+          [value]="methodOption.id"
+        >
+          {{ methodOption.name }}
+        </option>
+      </select>
+      <app-input
+        [placeholder]="'Data início'"
+        [(inputModel)]="filter.startDate"
+        [type]="'date'"
+      ></app-input>
+      <app-input
+        [placeholder]="'Data fim'"
+        [(inputModel)]="filter.finishDate"
+        [type]="'date'"
+      ></app-input>
+      <app-input
+        [placeholder]="'Pesquisar pela descrição da aposta'"
+        [(inputModel)]="filter.description"
+      ></app-input>
+      <app-input
+        [placeholder]="'ODD mínima'"
+        [type]="'number'"
+        [(inputModel)]="filter.minOdd"
+      ></app-input>
+      <app-input
+        [placeholder]="'ODD máxima'"
+        [type]="'number'"
+        [(inputModel)]="filter.maxOdd"
+      ></app-input>
+      <select [(ngModel)]="filter.result" name="selectedResultOptionFilter">
+        <option value="" selected>Selecione o resultado</option>
+        <option
+          *ngFor="let resultOption of resultsOptions"
+          [value]="resultOption"
+        >
+          {{ resultOption }}
+        </option>
+      </select>
+      <app-button [type]="'submit'" [text]="'Filtrar'"></app-button>
+    </form>
+  </div>
+  <div>
     <p class="content-title">Apostas cadastradas:</p>
     <table class="table table-bordered table-striped">
       <thead>
