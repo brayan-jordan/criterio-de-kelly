@@ -95,20 +95,93 @@
         <th>Descrição</th>
         <th>ODD</th>
         <th>Resultado</th>
+        <th class="text-center">Ações</th>
       </thead>
       <tbody *ngIf="!loader">
-        <tr
-          *ngFor="let tip of tips"
-          [ngClass]="{
-            red: tip.result.toUpperCase() === 'RED',
-            green: tip.result.toUpperCase() === 'GREEN'
-          }"
-        >
-          <td>{{ tip.method.name }}</td>
-          <td>{{ tip.date | date : "dd/MM/YYY" }}</td>
-          <td>{{ tip.description }}</td>
-          <td>{{ tip.odd }}</td>
-          <td>{{ tip.result }}</td>
+        <tr *ngFor="let tip of tips">
+          <td>
+            <span *ngIf="editTipInfo.id !== tip.id">{{ tip.method.name }}</span>
+            <select
+              *ngIf="editTipInfo.id === tip.id"
+              [(ngModel)]="editTipInfo.methodId"
+              name="selectedMethodOptionEdit"
+            >
+              <option value="" selected>Selecione o método</option>
+              <option
+                *ngFor="let methodOption of methodsOptions"
+                [value]="methodOption.id"
+              >
+                {{ methodOption.name }}
+              </option>
+            </select>
+          </td>
+          <td>
+            <span *ngIf="editTipInfo.id !== tip.id">{{
+              tip.date | date : "dd/MM/YYY"
+            }}</span>
+            <app-input
+              *ngIf="editTipInfo.id === tip.id"
+              [type]="'date'"
+              [(inputModel)]="editTipInfo.date"
+            ></app-input>
+          </td>
+          <td>
+            <span *ngIf="editTipInfo.id !== tip.id">{{ tip.description }}</span>
+            <app-input
+              *ngIf="editTipInfo.id === tip.id"
+              [placeholder]="'Insira a descrição da aposta'"
+              [(inputModel)]="editTipInfo.description"
+            ></app-input>
+          </td>
+          <td>
+            <span *ngIf="editTipInfo.id !== tip.id">{{ tip.odd }}</span>
+            <app-input
+              *ngIf="editTipInfo.id === tip.id"
+              [placeholder]="'Insira a ODD'"
+              [type]="'number'"
+              [(inputModel)]="editTipInfo.odd"
+            ></app-input>
+          </td>
+          <td
+            [ngClass]="{
+              red:
+                editTipInfo.id === tip.id
+                  ? editTipInfo.result.toUpperCase() === 'RED'
+                  : tip.result.toUpperCase() === 'RED',
+              green:
+                editTipInfo.id === tip.id
+                  ? editTipInfo.result.toUpperCase() === 'GREEN'
+                  : tip.result.toUpperCase() === 'GREEN'
+            }"
+          >
+            <span *ngIf="editTipInfo.id !== tip.id">{{ tip.result }}</span>
+            <select
+              [(ngModel)]="editTipInfo.result"
+              name="selectedResultOptionEdit"
+              *ngIf="editTipInfo.id === tip.id"
+            >
+              <option value="" selected>Selecione o resultado</option>
+              <option
+                *ngFor="let resultOption of resultsOptions"
+                [value]="resultOption"
+              >
+                {{ resultOption }}
+              </option>
+            </select>
+          </td>
+          <td class="button-container">
+            <app-button
+              [type]="'button'"
+              [icon]="'pencil-fill'"
+              (click)="setTipToEdit(tip)"
+            >
+            </app-button>
+            <app-button
+              [type]="'button'"
+              [icon]="'trash-fill'"
+              (click)="deleteTip(tip.id)"
+            ></app-button>
+          </td>
         </tr>
       </tbody>
     </table>

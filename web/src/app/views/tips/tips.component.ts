@@ -30,6 +30,15 @@ export class TipsComponent {
     odd: '',
   };
 
+  editTipInfo = {
+    id: '',
+    date: '',
+    description: '',
+    odd: '',
+    result: '',
+    methodId: '',
+  };
+
   filter = {
     description: '',
     minOdd: '',
@@ -107,5 +116,25 @@ export class TipsComponent {
     }
 
     return newTip;
+  }
+
+  deleteTip(id: string) {
+    this.tips = this.tips.filter((tip) => tip.id !== id);
+    this.tipService.delete(id).subscribe();
+  }
+
+  setTipToEdit(tip: Tip) {
+    this.editTipInfo.id = tip.id;
+    this.editTipInfo.description = tip.description;
+    this.editTipInfo.odd = tip.odd ? tip.odd.toString() : '';
+    this.editTipInfo.result = tip.result;
+    this.editTipInfo.methodId = tip.method.id;
+    let dateOfTip = new Date(tip.date);
+    this.editTipInfo.date =
+      dateOfTip.getFullYear() +
+      '-' +
+      (dateOfTip.getMonth() + 1).toString().padStart(2, '0') +
+      '-' +
+      dateOfTip.getDate().toString().padStart(2, '0');
   }
 }

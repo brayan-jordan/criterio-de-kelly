@@ -28,6 +28,10 @@
         font-size: $font-md;
         border-width: 1px !important;
       }
+
+      .text-center {
+        text-align: center;
+      }
     }
 
     tbody {
@@ -35,6 +39,13 @@
         td {
           padding: $space;
           font-size: $font-md;
+          vertical-align: middle;
+        }
+
+        .button-container {
+          display: flex;
+          justify-content: center;
+          gap: $space;
         }
       }
 
