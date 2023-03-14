@@ -125,6 +125,14 @@ app.get("/tip", async (req, res) => {
         lte: finishDate ? new Date(finishDate as string) : undefined,
       },
     },
+    orderBy: [
+      {
+        date: "desc",
+      },
+      {
+        createdAt: "desc",
+      },
+    ],
   });
 
   res.send(tip);

@@ -97,7 +97,13 @@
         <th>Resultado</th>
       </thead>
       <tbody *ngIf="!loader">
-        <tr *ngFor="let tip of tips">
+        <tr
+          *ngFor="let tip of tips"
+          [ngClass]="{
+            red: tip.result.toUpperCase() === 'RED',
+            green: tip.result.toUpperCase() === 'GREEN'
+          }"
+        >
           <td>{{ tip.method.name }}</td>
           <td>{{ tip.date | date : "dd/MM/YYY" }}</td>
           <td>{{ tip.description }}</td>
