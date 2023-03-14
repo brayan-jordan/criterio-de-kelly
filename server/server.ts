@@ -138,4 +138,54 @@ app.get("/tip", async (req, res) => {
   res.send(tip);
 });
 
+app.put("/tip/:id", async (req, res) => {
+  const { id } = req.params;
+  const { description, methodId, result, date, odd } = req.body;
+
+  if (!description) {
+    return res.status(400).send("Missing description");
+  }
+
+  if (!methodId) {
+    return res.status(400).send("Missing methodId");
+  }
+
+  const tip = await prisma.tip.update({
+    where: {
+      id: id,
+    },
+    data: {
+      description,
+      methodId,
+      result,
+      date,
+      odd,
+    },
+    select: {
+      id: true,
+      date: true,
+      description: true,
+      result: true,
+      odd: true,
+      method: true,
+      methodId: false,
+      createdAt: false,
+    },
+  });
+
+  res.send(tip);
+});
+
+app.delete("/tip/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const tip = await prisma.tip.delete({
+    where: {
+      id: id,
+    },
+  });
+
+  res.send(tip);
+})
+
 app.listen(3001);
