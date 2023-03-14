@@ -1,1 +1,4 @@
-<button [type]="type">{{ text }}</button>
+<button [type]="type">
+  <p *ngIf="text">{{ text }}</p>
+  <app-icon *ngIf="icon" [icon]="icon"></app-icon>
+</button>
