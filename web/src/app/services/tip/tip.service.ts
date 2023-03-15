@@ -59,4 +59,8 @@ export class TipService {
   delete(id: string): Observable<void> {
     return this.httpClient.delete<void>(this.baseUrl() + 'tip/' + id);
   }
+
+  put(id: string, tip: TipInput): Observable<Tip> {
+    return this.httpClient.put<Tip>(this.baseUrl() + 'tip/' + id, tip);
+  }
 }

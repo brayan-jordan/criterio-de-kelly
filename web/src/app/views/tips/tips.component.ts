@@ -137,4 +137,38 @@ export class TipsComponent {
       '-' +
       dateOfTip.getDate().toString().padStart(2, '0');
   }
+
+  saveEditTip() {
+    let newTip = this.mapEditTipInfoToTipInput();
+    this.tipService.put(this.editTipInfo.id, newTip).subscribe((res) => {
+      this.tips = this.tips.map((tip) => {
+        if (tip.id === res.id) {
+          return res;
+        }
+        return tip;
+      });
+      this.editTipInfo.id = '';
+    });
+  }
+
+  mapEditTipInfoToTipInput(): TipInput {
+    let newTip: TipInput = {
+      description: this.editTipInfo.description,
+      methodId: this.editTipInfo.methodId,
+    };
+
+    if (this.editTipInfo.date) {
+      newTip.date = new Date(this.editTipInfo.date);
+    }
+
+    if (this.editTipInfo.odd) {
+      newTip.odd = Number(this.editTipInfo.odd);
+    }
+
+    if (this.editTipInfo.result) {
+      newTip.result = this.editTipInfo.result;
+    }
+
+    return newTip;
+  }
 }
