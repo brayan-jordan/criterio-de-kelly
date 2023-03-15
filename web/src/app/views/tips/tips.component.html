@@ -98,6 +98,15 @@
         <th class="text-center">Ações</th>
       </thead>
       <tbody *ngIf="!loader">
+        <tr>
+          <td colspan="6" class="criterio-kelly-line-container">
+            <span>Total de apostas: {{ criterioKellyFromActualTips.totalTips }}</span>
+            <span>Acertos: {{ criterioKellyFromActualTips.totalTipsWon }}</span>
+            <span>Erros: {{ criterioKellyFromActualTips.totalTipsLost }}</span>
+            <span>Pendente: {{ criterioKellyFromActualTips.totalTipsVoid }}</span>
+            <span>Taxa de acerto: {{ criterioKellyFromActualTips.percentageTipsWon * 100 }}%</span>
+          </td>
+        </tr>
         <tr *ngFor="let tip of tips">
           <td>
             <span *ngIf="editTipInfo.id !== tip.id">{{ tip.method.name }}</span>

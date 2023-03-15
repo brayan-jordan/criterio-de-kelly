@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CriterioKellyService } from 'src/app/services/criterio-kelly/criterio-kelly.service';
+import { BasicCriterioKellyInfo } from 'src/app/services/criterio-kelly/criterio-kelly.types';
 import { MethodService } from 'src/app/services/method/method.service';
 import { Method } from 'src/app/services/method/method.types';
 import { TipService } from 'src/app/services/tip/tip.service';
@@ -12,7 +14,8 @@ import { Tip, TipInput } from 'src/app/services/tip/tip.types';
 export class TipsComponent {
   constructor(
     private tipService: TipService,
-    private methodService: MethodService
+    private methodService: MethodService,
+    private criterioKellyService: CriterioKellyService
   ) {}
 
   loader = false;
@@ -49,6 +52,14 @@ export class TipsComponent {
     result: '',
   };
 
+  criterioKellyFromActualTips: BasicCriterioKellyInfo = {
+    totalTips: 0,
+    totalTipsVoid: 0,
+    totalTipsLost: 0,
+    totalTipsWon: 0,
+    percentageTipsWon: 0,
+  };
+
   ngOnInit(): void {
     this.findMethodsOptions();
     this.findTips();
@@ -76,6 +87,7 @@ export class TipsComponent {
       )
       .subscribe((res) => {
         this.tips = res;
+        this.updateCriterioKellyInfo();
         this.loader = false;
       });
   }
@@ -94,6 +106,7 @@ export class TipsComponent {
     let newTip = this.mapNewTipInfoToTipInput();
     this.tipService.post(newTip).subscribe((res) => {
       this.tips.unshift(res);
+      this.updateCriterioKellyInfo();
     });
   }
 
@@ -148,6 +161,7 @@ export class TipsComponent {
         return tip;
       });
       this.editTipInfo.id = '';
+      this.updateCriterioKellyInfo();
     });
   }
 
@@ -170,5 +184,10 @@ export class TipsComponent {
     }
 
     return newTip;
+  }
+
+  updateCriterioKellyInfo() {
+    this.criterioKellyFromActualTips =
+      this.criterioKellyService.getBasicCriterioKellyInfo(this.tips);
   }
 }
