@@ -100,11 +100,25 @@
       <tbody *ngIf="!loader">
         <tr>
           <td colspan="6" class="criterio-kelly-line-container">
-            <span>Total de apostas: {{ criterioKellyFromActualTips.totalTips }}</span>
+            <span
+              >Total de apostas:
+              {{ criterioKellyFromActualTips.totalTips }}</span
+            >
             <span>Acertos: {{ criterioKellyFromActualTips.totalTipsWon }}</span>
             <span>Erros: {{ criterioKellyFromActualTips.totalTipsLost }}</span>
-            <span>Pendente: {{ criterioKellyFromActualTips.totalTipsVoid }}</span>
-            <span>Taxa de acerto: {{ criterioKellyFromActualTips.percentageTipsWon * 100 }}%</span>
+            <span
+              >Pendente: {{ criterioKellyFromActualTips.totalTipsVoid }}</span
+            >
+            <span
+              >Taxa de acerto:
+              {{ criterioKellyFromActualTips.percentageTipsWon * 100 }}%</span
+            >
+            <app-button
+              [text]="'Abrir calculadora'"
+              [type]="'submit'"
+              [width]="'200px'"
+              (click)="navigateToCalculator()"
+            ></app-button>
           </td>
         </tr>
         <tr *ngFor="let tip of tips">

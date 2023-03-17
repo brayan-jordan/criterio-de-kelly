@@ -28,4 +28,9 @@ export class CriterioKellyService {
 
     return basicCriteriokellyInfo;
   }
+
+  calculateKellyCriterion(odd: number, percentageTipsWon: number): number {
+    percentageTipsWon = percentageTipsWon / 100;
+    return (percentageTipsWon * odd - 1) / (odd - 1) * 100;
+  }
 }

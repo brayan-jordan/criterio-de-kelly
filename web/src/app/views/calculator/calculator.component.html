@@ -1,0 +1,22 @@
+<div class="content">
+  <div>
+    <label>Insira a taxa de acerto:</label>
+    <app-input
+      [type]="'number'"
+      [placeholder]="'Insira a taxa de acerto'"
+      [(inputModel)]="hitRate"
+      (inputModelChange)="calculate()"
+    ></app-input>
+  </div>
+  <div>
+    <label>Insira a ODD:</label>
+    <app-input
+      [type]="'number'"
+      [placeholder]="'Insira a ODD'"
+      [(inputModel)]="odd"
+      (inputModelChange)="calculate()"
+    ></app-input>
+  </div>
+
+  <p class="result">Porcentagem indicada: {{ percentageToBet | number }}%</p>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CriterioKellyService } from 'src/app/services/criterio-kelly/criterio-kelly.service';
 import { BasicCriterioKellyInfo } from 'src/app/services/criterio-kelly/criterio-kelly.types';
 import { MethodService } from 'src/app/services/method/method.service';
@@ -15,7 +16,8 @@ export class TipsComponent {
   constructor(
     private tipService: TipService,
     private methodService: MethodService,
-    private criterioKellyService: CriterioKellyService
+    private criterioKellyService: CriterioKellyService,
+    private router: Router
   ) {}
 
   loader = false;
@@ -189,5 +191,13 @@ export class TipsComponent {
   updateCriterioKellyInfo() {
     this.criterioKellyFromActualTips =
       this.criterioKellyService.getBasicCriterioKellyInfo(this.tips);
+  }
+
+  navigateToCalculator() {
+    this.router.navigate(['/calculator'], {
+      queryParams: {
+        hitRate: this.criterioKellyFromActualTips.percentageTipsWon * 100,
+      },
+    });
   }
 }

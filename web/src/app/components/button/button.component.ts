@@ -9,4 +9,5 @@ export class ButtonComponent {
   @Input() type = 'button';
   @Input() text = '';
   @Input() icon = '';
+  @Input() width = '100%';
 }

@@ -1,0 +1,19 @@
+@import "../../../variables.scss";
+
+.content {
+  padding: $space;
+  gap: 20px;
+  display: grid;
+  justify-content: center;
+
+
+  label {
+    font-size: $font-md;
+    font-weight: 700;
+  }
+  
+  .result {
+    text-align: center;
+    font-size: $font-lg;
+  }
+}
