@@ -23,7 +23,7 @@ export class TipsComponent {
   loader = false;
   tips: Tip[] = [];
 
-  resultsOptions = ['GREEN', 'RED'];
+  resultsOptions = ['GREEN', 'RED', 'PENDING'];
   selectedResultOption: any = '';
 
   methodsOptions: Method[] = [];
@@ -196,7 +196,9 @@ export class TipsComponent {
   navigateToCalculator() {
     this.router.navigate(['/calculator'], {
       queryParams: {
-        hitRate: this.criterioKellyFromActualTips.percentageTipsWon * 100,
+        hitRate: parseFloat(
+          (this.criterioKellyFromActualTips.percentageTipsWon * 100).toString()
+        ).toFixed(2),
       },
     });
   }

@@ -35,6 +35,7 @@
         [type]="'submit'"
         [text]="'Cadastrar'"
         (click)="submit()"
+        [backgroundColor]="'#fff28c'"
       ></app-button>
     </form>
   </div>
@@ -83,22 +84,26 @@
           {{ resultOption }}
         </option>
       </select>
-      <app-button [type]="'submit'" [text]="'Filtrar'"></app-button>
+      <app-button
+        [type]="'submit'"
+        [text]="'Filtrar'"
+        [backgroundColor]="'#fff28c'"
+      ></app-button>
     </form>
   </div>
   <div>
     <p class="content-title">Apostas cadastradas:</p>
     <table class="table table-bordered table-striped">
       <thead>
-        <th>Método</th>
-        <th>Data</th>
-        <th>Descrição</th>
-        <th>ODD</th>
-        <th>Resultado</th>
-        <th class="text-center">Ações</th>
+        <th style="width: 300px">Método</th>
+        <th style="width: 350px">Data</th>
+        <th style="width: 400px">Descrição</th>
+        <th style="width: 125px">ODD</th>
+        <th style="width: 200px">Resultado</th>
+        <th class="text-center" style="width: 200px">Ações</th>
       </thead>
       <tbody *ngIf="!loader">
-        <tr>
+        <tr *ngIf="tips.length > 0">
           <td colspan="6" class="criterio-kelly-line-container">
             <span
               >Total de apostas:
@@ -111,13 +116,17 @@
             >
             <span
               >Taxa de acerto:
-              {{ criterioKellyFromActualTips.percentageTipsWon * 100 }}%</span
+              {{
+                criterioKellyFromActualTips.percentageTipsWon * 100
+                  | number : ".2-2"
+              }}%</span
             >
             <app-button
               [text]="'Abrir calculadora'"
               [type]="'submit'"
               [width]="'200px'"
               (click)="navigateToCalculator()"
+              [backgroundColor]="'#fff28c'"
             ></app-button>
           </td>
         </tr>
@@ -216,6 +225,9 @@
         </tr>
       </tbody>
     </table>
+    <app-not-found-data
+      *ngIf="!loader && tips.length === 0"
+    ></app-not-found-data>
     <app-loader *ngIf="loader"></app-loader>
   </div>
 </div>

@@ -19,7 +19,6 @@ export class CalculatorComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      console.log(params)
       this.hitRate = params['hitRate'];
       this.calculate();
     });

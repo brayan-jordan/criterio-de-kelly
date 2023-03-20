@@ -1,0 +1,10 @@
+@import "../../../variables.scss";
+
+.not-found-data {
+  text-align: center;
+  height: $loader-container-height;
+  p {
+    margin: 0;
+    font-size: $font-md;
+  }
+}

@@ -23,7 +23,7 @@ model Tip {
   description String
   odd         Float?
   date        DateTime @default(now())
-  result      String   @default("pending")
+  result      String   @default("PENDING")
   method      Method   @relation(fields: [methodId], references: [id])
   methodId    String
   createdAt   DateTime @default(now())

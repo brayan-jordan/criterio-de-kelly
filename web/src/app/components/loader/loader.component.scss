@@ -3,8 +3,8 @@
 .loader-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100%;
+  align-items: start;
+  height: $loader-container-height;
   width: 100%;
 }
 

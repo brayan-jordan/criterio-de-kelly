@@ -10,7 +10,11 @@
         [placeholder]="'Insira a descrição do método'"
         [(inputModel)]="newMethodFormInfo.description"
       ></app-input>
-      <app-button [type]="'submit'" [text]="'Cadastrar'"></app-button>
+      <app-button
+        [type]="'submit'"
+        [text]="'Cadastrar'"
+        [backgroundColor]="'#fff28c'"
+      ></app-button>
     </form>
   </div>
   <div>
@@ -24,7 +28,11 @@
         [placeholder]="'Pesquisar pela descrição do método'"
         [(inputModel)]="filter.description"
       ></app-input>
-      <app-button [type]="'submit'" [text]="'Filtrar'"></app-button>
+      <app-button
+        [type]="'submit'"
+        [text]="'Filtrar'"
+        [backgroundColor]="'#fff28c'"
+      ></app-button>
     </form>
   </div>
   <div>
@@ -41,6 +49,9 @@
         </tr>
       </tbody>
     </table>
+    <app-not-found-data
+      *ngIf="!loader && methods.length === 0"
+    ></app-not-found-data>
     <app-loader *ngIf="loader"></app-loader>
   </div>
 </div>

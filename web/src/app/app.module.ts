@@ -14,6 +14,7 @@ import { TipsComponent } from './views/tips/tips.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { InputComponent } from './components/input/input.component';
 import { ButtonComponent } from './components/button/button.component';
+import { NotFoundDataComponent } from './components/not-found-data/not-found-data.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ButtonComponent } from './components/button/button.component';
     LoaderComponent,
     InputComponent,
     ButtonComponent,
+    NotFoundDataComponent,
   ],
   imports: [
     BrowserModule,

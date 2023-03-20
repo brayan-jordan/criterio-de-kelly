@@ -10,4 +10,5 @@ export class ButtonComponent {
   @Input() text = '';
   @Input() icon = '';
   @Input() width = '100%';
+  @Input() backgroundColor = 'transparent';
 }
